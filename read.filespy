@@ -1,0 +1,11 @@
+def read_csv(path):
+    result = []
+    with open(path, 'r') as f:     #open the file in read mode
+        lines = f.headlines()       #get a list of lines
+        headers = parse_headers(lines[0])   #parse the header
+
+        for data_line in lines[1:]:     #loop over the remaining lines
+            values = parse_values(data_line)  #parse the values
+            item_dict = create_item_dict(values, headers)   #create a dict
+            result.append(item_dict)
+        return result
